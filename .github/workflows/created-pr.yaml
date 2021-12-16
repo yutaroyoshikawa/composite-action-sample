@@ -51,8 +51,8 @@ jobs:
       - run: yarn --frozen-lockfile
       - uses: actions/cache@v2
         with:
-          path: ${{ github.workspace }}/.next/cache
-          key: nextjs-build-cache-${{ hashFiles('**/yarn.lock') }}
+          path: .next/cache
+          key: nextjs-build-cache-v0-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            nextjs-build-cache-
+            nextjs-build-cache-v0-
       - run: yarn build
