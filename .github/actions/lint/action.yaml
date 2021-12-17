@@ -1,8 +1,8 @@
-name: 'build-app'
-description: 'Build Next.js'
+name: 'lint'
+description: 'Linting code sintax'
 runs:
   using: 'composite'
-  steps:
+  step:
     - uses: actions/checkout@v2
     - uses: actions/cache@v2
       with:
@@ -19,5 +19,5 @@ runs:
         key: nextjs-cache-v0-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           nextjs-cache-v0-
-    - run: yarn build
+    - run: yarn lint
       shell: bash

@@ -1,8 +1,8 @@
-name: 'build-app'
-description: 'Build Next.js'
+name: 'install-deps'
+description: 'Install node_modules'
 runs:
   using: 'composite'
-  steps:
+  step:
     - uses: actions/checkout@v2
     - uses: actions/cache@v2
       with:
@@ -13,11 +13,6 @@ runs:
     - uses: actions/setup-node@v2
       with:
         node-version: '16'
-    - uses: actions/cache@v2
-      with:
-        path: .next/cache
-        key: nextjs-cache-v0-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          nextjs-cache-v0-
-    - run: yarn build
+    - name: Install Dependencies
+      run: yarn --frozen-lockfile
       shell: bash
