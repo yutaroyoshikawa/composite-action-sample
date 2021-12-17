@@ -19,3 +19,4 @@ runs:
         restore-keys: |
           nextjs-cache-v0-
     - run: yarn build
+      shell: bash
