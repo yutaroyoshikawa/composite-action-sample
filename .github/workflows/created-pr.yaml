@@ -62,20 +62,4 @@ jobs:
       - lint
       - type-check
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: yarn-packages-v0-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            yarn-packages-v0-
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - uses: actions/cache@v2
-        with:
-          path: .next/cache
-          key: nextjs-cache-v0-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            nextjs-cache-v0-
-      - run: yarn build
+      - uses: ./.github/actions/build-app
