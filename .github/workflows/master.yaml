@@ -1,4 +1,4 @@
-name: created-pr
+name: master-branch-ci
 
 on:
   push:
