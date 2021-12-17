@@ -7,10 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: yarn-packages-v0-{{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            yarn-packages-v0-
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
-          cache: 'yarn'
       - name: Install Dependencies
         run: yarn --frozen-lockfile
   lint:
@@ -19,10 +24,15 @@ jobs:
       - install-deps
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: yarn-packages-v0-{{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            yarn-packages-v0-
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
-          cache: 'yarn'
       - run: yarn --frozen-lockfile
       - run: yarn lint
   type-check:
@@ -31,10 +41,15 @@ jobs:
       - install-deps
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: yarn-packages-v0-{{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            yarn-packages-v0-
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
-          cache: 'yarn'
       - run: yarn --frozen-lockfile
       - run: yarn type-check
   build-app:
@@ -44,10 +59,15 @@ jobs:
       - type-check
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: yarn-packages-v0-{{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            yarn-packages-v0-
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
-          cache: 'yarn'
       - run: yarn --frozen-lockfile
       - uses: actions/cache@v2
         with:
