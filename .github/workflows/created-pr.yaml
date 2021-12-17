@@ -7,21 +7,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/actions/install-deps
+      - name: install-deps
+        uses: ./.github/actions/install-deps
   lint:
     runs-on: ubuntu-latest
     needs:
       - install-deps
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/actions/lint
+      - name: lint
+        uses: ./.github/actions/lint
   type-check:
     runs-on: ubuntu-latest
     needs:
       - install-deps
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/actions/type-check
+      - name: type-check
+        uses: ./.github/actions/type-check
   build-app:
     runs-on: ubuntu-latest
     needs:
@@ -29,4 +32,5 @@ jobs:
       - type-check
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/actions/build-app
+      - name: build-app
+        uses: ./.github/actions/build-app
